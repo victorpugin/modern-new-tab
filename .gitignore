@@ -11,5 +11,5 @@ npm-debug.log
 dist
 extension.zip
 
-# hidden secret configs
-config/secret
+# secret config file
+ config/unsplash-credentials.js
