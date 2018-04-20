@@ -29,12 +29,12 @@ module.exports = {
     default_title: 'New Tab',
     default_popup: 'pages/popup.html'
   },
-// Pages for future features
-/*  background: {
+  background: {
     persistent: false,
     page: 'pages/background.html'
   },
-  options_page: 'pages/options.html',
+// Pages for future features
+/*  options_page: 'pages/options.html',
   content_scripts: [{
     js: [
       'js/manifest.js',
