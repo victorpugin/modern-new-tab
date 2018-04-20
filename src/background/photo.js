@@ -1,4 +1,5 @@
 import storage from '../ext/storage'
+import config from '../../config'
 
 export default {
   needUpdate () {
@@ -8,7 +9,7 @@ export default {
     var now = new Date()
 
     var diff = now - date
-    if (diff > 1000 * 60) return true // every minutes
+    if (diff > config.updateBackgroundFrequency) return true
 
     console.log('needUpdate: false')
   },
