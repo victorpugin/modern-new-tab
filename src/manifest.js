@@ -5,7 +5,7 @@ module.exports = {
   name: 'chrome-new-tab',
   description: 'A personal extension overriding chrome’s new tab with Vue.js',
   author: 'victor pugin <victor.pugin@epitech.eu>',
-  version: '1.0.0',
+  version: '0.1.0',
   icons: {
     '16': 'icons/16.png',
     '128': 'icons/128.png'
