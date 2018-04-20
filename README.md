@@ -2,7 +2,7 @@
 
 > A personal extension overriding chrome’s new tab
 
-## Installation:
+## Installation
 
 ```bash
 # install dependencies
@@ -14,6 +14,8 @@ $ npm run dev # or yarn dev
 # run in prod
 $ npm run build # or yarn build
 ```
+
+Then import in your browser
 
 ## License
 
