@@ -23,7 +23,8 @@ module.exports = {
     'background',
     'unlimitedStorage',
 */
-    'storage'
+    'storage',
+    'https://api.unsplash.com/*'
   ],
   browser_action: {
     default_title: 'New Tab',
