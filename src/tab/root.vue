@@ -1,6 +1,7 @@
 <template lang="pug">
     #bg
-      img(v-bind:src="imgUrl" title="Love you" v-on:load="fetchBackgroundPhoto")
+      transition(name="fade")
+        img(v-bind:src="bgUrl" v-on:load="onBgLoaded" v-show='bgLoaded')
 </template>
 
 <script>
@@ -8,7 +9,8 @@
 
   export default {
     data: () => ({
-      imgUrl: null
+      bgUrl: null,
+      bgLoaded: false
     }),
     computed: { },
     created () {
@@ -17,9 +19,13 @@
     mounted () { },
     methods: {
       getBackgroundFromStorage () {
-        this.imgUrl = storage.get('backgroundPhoto')
+        this.bgUrl = storage.get('backgroundPhoto')
       },
-      fetchBackgroundPhoto () {
+      onBgLoaded () {
+        this.bgLoaded = true
+        this.fetchNewBackground()
+      },
+      fetchNewBackground () {
         chrome.runtime.sendMessage({ msg: 'fetchBackgroundPhoto' })
       }
     }
@@ -43,5 +49,11 @@
     margin: auto;
     min-width: 50%;
     min-height: 50%;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s ease-out
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0
   }
 </style>
