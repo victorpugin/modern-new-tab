@@ -1,8 +1,16 @@
 <template lang="pug">
   #root
+
     #bg
       transition(name="fade")
-        img(v-bind:src="bg.url" v-on:load="onBgLoaded" v-show='bg.isLoaded')
+        img(v-bind:src="bg.url" @load="onBgLoaded" v-show='bg.isLoaded')
+    .text-block
+      p Photo by&nbsp;
+        a(:href="bg.user.link" class="link")
+          b {{ bg.user.name }}
+        |  on&nbsp;
+        a(href="https://unsplash.com/" class="link")
+          b Unsplash
 </template>
 
 <script>
@@ -17,6 +25,11 @@
         date: null,
         location: null,
         user: null
+      },
+      ui: {
+        credits: {
+          show: false
+        }
       }
     }),
     computed: { },
@@ -72,9 +85,22 @@
     min-height: 50%;
   }
   .fade-enter-active, .fade-leave-active {
-    transition: opacity 1s ease-out
+    transition: opacity 2s ease-out
   }
   .fade-enter, .fade-leave-to {
     opacity: 0
+  }
+  /* Bottom right text */
+  .text-block {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .link {
+    color: #999;
   }
 </style>
