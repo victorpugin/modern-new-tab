@@ -10,6 +10,7 @@
 
   export default {
     data: () => ({
+      isLoadingFullscreen: true,
       bg: {
         url: null,
         isLoaded: false,
@@ -20,6 +21,10 @@
     }),
     computed: { },
     created () {
+      this.isLoadingFullscreen = this.$loading({
+        lock: true,
+        text: 'Loading...'
+      })
       this.getBackgroundFromStorage()
     },
     mounted () { },
@@ -37,6 +42,7 @@
         }
       },
       onBgLoaded () {
+        this.isLoadingFullscreen.close()
         this.bg.isLoaded = true
         this.fetchNewBackground()
       },
