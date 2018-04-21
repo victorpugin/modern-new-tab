@@ -1,6 +1,6 @@
 <template lang="pug">
 	.text-block
-		p Photo by&nbsp;
+		p(class='remove-opacity') Photo by&nbsp;
 			a(:href="user.link" class="link")
 				b {{ user.name }}
 			|  on&nbsp;
@@ -27,8 +27,12 @@ export default {
 	color: white;
 	padding-left: 20px;
 	padding-right: 20px;
+	opacity: 0.7;
 }
 .link {
 	color: #999;
+}
+.remove-opacity {
+	opacity: 1;
 }
 </style>
