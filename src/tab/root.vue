@@ -2,13 +2,15 @@
   #root
     #bg
       transition(name="fade")
-        img(v-bind:src="bg.url" @load="onBgLoaded" v-show='bg.isLoaded')
-    unsplash-credits(:user='bg.user')
+        img(v-bind:src="bgUrl" @load="onBgLoaded" v-show='bg.isLoaded')
+    unsplash-credits(:user='bgUser')
 </template>
 
 <script>
   import Storage from '../ext/storage'
   import UnsplashCredits from '../components/unsplash-credits'
+
+  import { mapState } from 'vuex'
 
   export default {
     components: {
@@ -17,11 +19,7 @@
     data: () => ({
       isLoadingFullscreen: true,
       bg: {
-        url: null,
-        isLoaded: false,
-        date: null,
-        location: null,
-        user: null
+        isLoaded: false
       },
       ui: {
         credits: {
@@ -29,7 +27,10 @@
         }
       }
     }),
-    computed: { },
+    computed: mapState({
+      bgUrl: state => state.background.url,
+      bgUser: state => state.background.user
+    }),
     created () {
       this.isLoadingFullscreen = this.$loading({
         lock: true,
@@ -41,12 +42,8 @@
     methods: {
       getBackgroundFromStorage () {
         const photo = Storage.get('backgroundPhoto')
-
         if (photo.url) {
-          this.bg.url = photo.url
-          this.bg.date = photo.date
-          this.bg.location = photo.location
-          this.bg.user = photo.user
+          this.$store.commit('background/PHOTO_SET', photo)
         } else { // TODO: handle when storage is empty
           this.fetchNewBackground()
         }
