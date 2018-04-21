@@ -1,7 +1,8 @@
 <template lang="pug">
+  #root
     #bg
       transition(name="fade")
-        img(v-bind:src="bgUrl" v-on:load="onBgLoaded" v-show='bgLoaded')
+        img(v-bind:src="bg.url" v-on:load="onBgLoaded" v-show='bg.isLoaded')
 </template>
 
 <script>
@@ -9,8 +10,13 @@
 
   export default {
     data: () => ({
-      bgUrl: null,
-      bgLoaded: false
+      bg: {
+        url: null,
+        isLoaded: false,
+        date: null,
+        location: null,
+        user: null
+      }
     }),
     computed: { },
     created () {
@@ -19,10 +25,19 @@
     mounted () { },
     methods: {
       getBackgroundFromStorage () {
-        this.bgUrl = storage.get('backgroundPhoto')
+        const photo = storage.get('backgroundPhoto')
+
+        if (photo.url) {
+          this.bg.url = photo.url
+          this.bg.date = photo.date
+          this.bg.location = photo.location
+          this.bg.user = photo.user
+        } else { // TODO: handle when storage is empty
+          this.fetchNewBackground()
+        }
       },
       onBgLoaded () {
-        this.bgLoaded = true
+        this.bg.isLoaded = true
         this.fetchNewBackground()
       },
       fetchNewBackground () {
