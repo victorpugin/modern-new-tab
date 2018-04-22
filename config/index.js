@@ -1,7 +1,13 @@
 
+var updateBackgroundFrequency = 1000 * 30
+
+if (process.env.NODE_ENV === 'development') {
+  updateBackgroundFrequency = 1000 * 2
+}
+
 const config = {
   background: {
-    updateFrequency: 1000 * 1, // fetch frequency of photos
+    updateFrequency: updateBackgroundFrequency, // fetch frequency of photos
     width: 1920,
     height: 1080
   },
