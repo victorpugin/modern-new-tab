@@ -12,4 +12,4 @@ dist
 extension.zip
 
 # secret config file
- config/unsplash-credentials.js
+config/unsplash-credentials.js
