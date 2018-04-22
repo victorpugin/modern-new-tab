@@ -32,7 +32,7 @@
       bgUser: state => state.background.user
     }),
     created () {
-      this.isLoadingFullscreen = this.$loading({
+      this.loadingFullscreen = this.$loading({
         lock: true,
         text: 'Loading...'
       })
@@ -42,14 +42,15 @@
     methods: {
       getBackgroundFromStorage () {
         const photo = Storage.get('backgroundPhoto')
-        if (photo.url) {
+        if (photo && photo.url) {
           this.$store.commit('background/PHOTO_SET', photo)
         } else { // TODO: handle when storage is empty
           this.fetchNewBackground()
+          this.loadingFullscreen.text = 'Please, refresh or open a new tab.'
         }
       },
       onBgLoaded () {
-        this.isLoadingFullscreen.close()
+        this.loadingFullscreen.close()
         this.bg.isLoaded = true
         this.fetchNewBackground()
       },

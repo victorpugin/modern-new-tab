@@ -1,10 +1,10 @@
 <template lang="pug">
 	.text-block
 		p(class='remove-opacity') Photo by&nbsp;
-			a(:href="user.link" class="link")
-				b {{ user.name }}
+			a(:href="link" class="hyperlink")
+				b {{ name }}
 			|  on&nbsp;
-			a(href="https://unsplash.com/" class="link")
+			a(href="https://unsplash.com/" class="hyperlink")
 				b Unsplash
 </template>
 
@@ -13,7 +13,20 @@
 export default {
   name: 'unsplash-credits',
   props: [ 'user' ],
-  computed: { }
+  computed: {
+    name () {
+      if (this.user && this.user.name) {
+        return this.user.name
+      }
+      return 'Unknown'
+    },
+    link () {
+      if (this.user && this.user.link) {
+        return this.user.link
+      }
+      return 'https://unsplash.com/'
+    }
+  }
 }
 </script>
 
@@ -29,7 +42,7 @@ export default {
 	padding-right: 20px;
 	opacity: 0.7;
 }
-.link {
+.hyperlink {
 	color: #999;
 }
 .remove-opacity {

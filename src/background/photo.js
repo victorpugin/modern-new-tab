@@ -51,7 +51,6 @@ export default {
       const photo = await this.fetchUnsplashPhoto()
 
       // Store the new photo
-      console.log(photo)
       photo.location = photo.location || {}
       photo.user = photo.user || {}
       storage.set('backgroundPhoto', {
