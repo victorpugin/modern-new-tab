@@ -43,7 +43,7 @@ export default {
 	opacity: 0.7;
 }
 .hyperlink {
-	color: #999;
+	color: #1b6f84;
 }
 .remove-opacity {
 	opacity: 1;

@@ -2,8 +2,8 @@
  * @see {@link https://developer.chrome.com/extensions/manifest}
  */
 module.exports = {
-  name: 'chrome-new-tab',
-  description: 'A personal extension overriding chrome’s new tab with Vue.js',
+  name: 'modern-new-tab',
+  description: 'A modern and clean new tab extension',
   author: 'victor pugin <victor.pugin@epitech.eu>',
   version: '0.2.0',
   icons: {
