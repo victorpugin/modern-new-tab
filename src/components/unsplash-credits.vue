@@ -4,7 +4,7 @@
 			a(:href="link" class="hyperlink")
 				b {{ name }}
 			|  on&nbsp;
-			a(href="https://unsplash.com/" class="hyperlink")
+			a(:href="unsplashLink" class="hyperlink")
 				b Unsplash
 </template>
 
@@ -13,6 +13,10 @@
 export default {
   name: 'unsplash-credits',
   props: [ 'user' ],
+  data: () => ({
+    unsplashUrl: 'https://unsplash.com/',
+    unsplashUtm: '?utm_source=modern_new_tab&utm_medium=referral'
+  }),
   computed: {
     name () {
       if (this.user && this.user.name) {
@@ -22,9 +26,12 @@ export default {
     },
     link () {
       if (this.user && this.user.link) {
-        return this.user.link
+        return this.user.link + this.unsplashUtm
       }
-      return 'https://unsplash.com/'
+      return this.unsplashUrl + this.unsplashUtm
+    },
+    unsplashLink () {
+      return this.unsplashUrl + this.unsplashUtm
     }
   }
 }
