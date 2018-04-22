@@ -45,7 +45,10 @@ export default {
 	color: white;
 	padding-left: 20px;
 	padding-right: 20px;
-	opacity: 0.7;
+	opacity: 0.75;
+}
+.text-block:hover {
+	opacity: 1;
 }
 .hyperlink {
 	color: #1b6f84;
