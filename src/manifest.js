@@ -7,8 +7,7 @@ module.exports = {
   author: 'victor pugin <victor.pugin@epitech.eu>',
   version: '0.2.0',
   icons: {
-    '16': 'icons/16.png',
-    '128': 'icons/128.png'
+    '128': 'icons/icon_128.png'
   },
   /**
    * @see {@link https://developer.chrome.com/extensions/declare_permissions}
