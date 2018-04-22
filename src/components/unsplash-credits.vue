@@ -10,13 +10,11 @@
 
 <script>
 
+import config from '../../config'
+
 export default {
   name: 'unsplash-credits',
   props: [ 'user' ],
-  data: () => ({
-    unsplashUrl: 'https://unsplash.com/',
-    unsplashUtm: '?utm_source=modern_new_tab&utm_medium=referral'
-  }),
   computed: {
     name () {
       if (this.user && this.user.name) {
@@ -26,12 +24,12 @@ export default {
     },
     link () {
       if (this.user && this.user.link) {
-        return this.user.link + this.unsplashUtm
+        return this.user.link + config.unsplash.utm
       }
-      return this.unsplashUrl + this.unsplashUtm
+      return config.unsplash.url + config.unsplash.utm
     },
     unsplashLink () {
-      return this.unsplashUrl + this.unsplashUtm
+      return config.unsplash.url + config.unsplash.utm
     }
   }
 }

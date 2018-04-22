@@ -11,7 +11,7 @@ export default {
     const now = new Date()
 
     const diff = now - date
-    if (diff > config.updateBackgroundFrequency) return true
+    if (diff > config.background.updateFrequency) return true
 
     console.log('needUpdate: false')
   },
@@ -24,8 +24,8 @@ export default {
       baseURL: 'https://api.unsplash.com',
       params: {
         featured: true,
-        w: config.backgroundWidth,
-        h: config.backgroundHeight,
+        w: config.background.width,
+        h: config.background.height,
         orientation: 'landscape'
       },
       headers: {'Authorization': authorizationToken}
