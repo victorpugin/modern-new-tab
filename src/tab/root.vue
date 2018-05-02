@@ -28,8 +28,8 @@
       }
     }),
     computed: mapState({
-      wallpaperUrl: state => state.background.url,
-      wallpaperUser: state => state.background.user
+      wallpaperUrl: state => state.wallpaper.url,
+      wallpaperUser: state => state.wallpaper.user
     }),
     created () {
       this.loadingFullscreen = this.$loading({
@@ -43,7 +43,7 @@
       getWallpaperFromStorage () {
         const wallpaper = Storage.get('wallpaper.info')
         if (wallpaper && wallpaper.url) {
-          this.$store.commit('background/PHOTO_SET', wallpaper)
+          this.$store.commit('background/WALLPAPER_SET', wallpaper)
         } else { // TODO: handle when storage is empty
           this.fetchNextWallpaper()
           this.loadingFullscreen.text = 'Please, refresh or open a new tab.'
