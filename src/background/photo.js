@@ -41,7 +41,7 @@ export default {
     console.log('unsplash GET /photos/random: unknown response')
   },
 
-  // 3. Store photo in local storage
+  // 4. Store photo in local storage
   storePhoto (photo) {
     console.log('storePhoto')
 
@@ -62,14 +62,13 @@ export default {
     })
   },
 
-  // 4. Preload photo to be ready in cache
+  // 3. Preload photo to be ready in cache
   preloadPhoto (photo) {
     console.log('preloadPhoto')
 
     var img = new Image()
-    img.onLoad = function () {
-      console.log('image loaded')
-    }
+    // 4. on image loaded, store photo
+    img.addEventListener('load', this.storePhoto.bind(this, photo))
     img.src = photo.urls.custom
   },
 
@@ -85,10 +84,7 @@ export default {
       // 2. Fetch a photo from Unsplash and get res.data
       const photo = await this.fetchUnsplashPhoto()
 
-      // Store the new photo
-      this.storePhoto(photo)
-
-      // Preload photo to cache
+      // 3. Preload photo to cache
       this.preloadPhoto(photo)
     }
   }
