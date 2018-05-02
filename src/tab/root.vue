@@ -1,9 +1,9 @@
 <template lang="pug">
   #root
-    #bg
+    #wallpaper
       transition(name="fade")
-        img(v-bind:src="bgUrl" @load="onBgLoaded" v-show='bg.isLoaded')
-    unsplash-credits(:user='bgUser')
+        img(v-bind:src="wallpaperUrl" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
+    unsplash-credits(:user='wallpaperUser')
 </template>
 
 <script>
@@ -18,7 +18,7 @@
     },
     data: () => ({
       isLoadingFullscreen: true,
-      bg: {
+      wallpaper: {
         isLoaded: false
       },
       ui: {
@@ -28,48 +28,48 @@
       }
     }),
     computed: mapState({
-      bgUrl: state => state.background.url,
-      bgUser: state => state.background.user
+      wallpaperUrl: state => state.background.url,
+      wallpaperUser: state => state.background.user
     }),
     created () {
       this.loadingFullscreen = this.$loading({
         lock: true,
         text: 'Loading...'
       })
-      this.getBackgroundFromStorage()
+      this.getWallpaperFromStorage()
     },
     mounted () { },
     methods: {
-      getBackgroundFromStorage () {
-        const photo = Storage.get('backgroundPhoto')
-        if (photo && photo.url) {
-          this.$store.commit('background/PHOTO_SET', photo)
+      getWallpaperFromStorage () {
+        const wallpaper = Storage.get('wallpaper.info')
+        if (wallpaper && wallpaper.url) {
+          this.$store.commit('background/PHOTO_SET', wallpaper)
         } else { // TODO: handle when storage is empty
-          this.fetchNewBackground()
+          this.fetchNextWallpaper()
           this.loadingFullscreen.text = 'Please, refresh or open a new tab.'
         }
       },
-      onBgLoaded () {
+      onWallpaperLoaded () {
         this.loadingFullscreen.close()
-        this.bg.isLoaded = true
-        this.fetchNewBackground()
+        this.wallpaper.isLoaded = true
+        this.fetchNextWallpaper()
       },
-      fetchNewBackground () {
-        chrome.runtime.sendMessage({ msg: 'fetchBackgroundPhoto' })
+      fetchNextWallpaper () {
+        chrome.runtime.sendMessage({ msg: 'fetchNextWallpaper' })
       }
     }
   }
 </script>
 
 <style lang="scss">
-  #bg {
+  #wallpaper {
     position: fixed;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
   }
-  #bg img {
+  #wallpaper img {
     position: absolute;
     top: 0;
     left: 0;

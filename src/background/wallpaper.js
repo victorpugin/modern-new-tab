@@ -8,7 +8,7 @@ export default {
   needUpdate () {
     console.log('needUpdate')
 
-    const date = new Date(storage.get('lastFetchWallpaper'))
+    const date = new Date(storage.get(config.storage.wallpaper.lastFetch))
     const now = new Date()
 
     const diff = now - date
@@ -50,7 +50,7 @@ export default {
     wallpaper.location = wallpaper.location || {}
     wallpaper.user = wallpaper.user || {}
 
-    storage.set('backgroundPhoto', {
+    storage.set(config.storage.wallpaper.info, {
       url: wallpaper.urls.custom,
       date: wallpaper.created_at,
       location: {
@@ -81,7 +81,7 @@ export default {
     // 1. Avoid fetching multiple time if user open a lot of new tabs
     if (this.needUpdate() === true) {
       const now = new Date()
-      storage.set('lastFetchWallpaper', now.toString())
+      storage.set(config.storage.wallpaper.lastFetch, now.toString())
 
       // 2. Fetch a wallpaper from Unsplash and get res.data
       const wallpaper = await this.fetchUnsplashWallpaper()

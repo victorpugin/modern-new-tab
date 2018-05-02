@@ -2,7 +2,7 @@
 var updateBackgroundFrequency = 1000 * 30
 
 if (process.env.NODE_ENV === 'development') {
-  updateBackgroundFrequency = 1000 * 2
+  updateBackgroundFrequency = 1000 * 5
 }
 
 const config = {
@@ -17,6 +17,12 @@ const config = {
     utm: '?utm_source=modern_new_tab&utm_medium=referral', // change with your app name
     endpoint: {
       photoRandom: '/photos/random'
+    }
+  },
+  storage: {
+    wallpaper: {
+      info: 'wallpaper.info',
+      lastFetch: 'wallpaper.lastFetch'
     }
   }
 }
