@@ -1,3 +1,4 @@
+import actions from './actions'
 import mutations from './mutations'
 
 export default {
@@ -8,5 +9,6 @@ export default {
     location: null,
     user: null
   },
+  actions,
   mutations
 }

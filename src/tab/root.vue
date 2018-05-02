@@ -7,10 +7,9 @@
 </template>
 
 <script>
-  import Storage from '../ext/storage'
   import UnsplashCredits from '../components/unsplash-credits'
 
-  import { mapState } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     components: {
@@ -36,26 +35,18 @@
         lock: true,
         text: 'Loading...'
       })
-      this.getWallpaperFromStorage()
+      this.loadWallpaperFromStorage()
     },
     mounted () { },
     methods: {
-      getWallpaperFromStorage () {
-        const wallpaper = Storage.get('wallpaper.info')
-        if (wallpaper && wallpaper.url) {
-          this.$store.commit('background/WALLPAPER_SET', wallpaper)
-        } else { // TODO: handle when storage is empty
-          this.fetchNextWallpaper()
-          this.loadingFullscreen.text = 'Please, refresh or open a new tab.'
-        }
-      },
+      ...mapActions('wallpaper', [
+        'loadWallpaperFromStorage',
+        'fetchNextWallpaper'
+      ]),
       onWallpaperLoaded () {
         this.loadingFullscreen.close()
         this.wallpaper.isLoaded = true
         this.fetchNextWallpaper()
-      },
-      fetchNextWallpaper () {
-        chrome.runtime.sendMessage({ msg: 'fetchNextWallpaper' })
       }
     }
   }
