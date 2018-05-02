@@ -43,6 +43,8 @@ export default {
 
   // 3. Store photo in local storage
   storePhoto (photo) {
+    console.log('storePhoto')
+
     photo.location = photo.location || {}
     photo.user = photo.user || {}
 
@@ -62,8 +64,14 @@ export default {
 
   // 4. Preload photo to be ready in cache
   preloadPhoto (photo) {
-    
-  }
+    console.log('preloadPhoto')
+
+    var img = new Image()
+    img.onLoad = function () {
+      console.log('image loaded')
+    }
+    img.src = photo.urls.custom
+  },
 
   // onMessage listener: request.msg type 'fetchBackgroundPhoto'
   async fetchBackgroundPhoto () {
