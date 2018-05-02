@@ -1,7 +1,7 @@
-import photo from './photo'
+import wallpaper from './wallpaper'
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    if (request.msg === 'fetchBackgroundPhoto') photo.fetchBackgroundPhoto()
+    if (request.msg === 'fetchBackgroundPhoto') wallpaper.fetchNextWallpaper()
   }
 )
