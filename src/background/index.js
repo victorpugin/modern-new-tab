@@ -1,10 +1,11 @@
 import trace from '../utils/trace'
+import config from '../../config'
 
 import wallpaper from './wallpaper'
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    if (request.msg === 'fetchNextWallpaper') wallpaper.fetchNextWallpaper(trace.generateCallId())
+    if (request.msg === config.message.fetchNextWallpaper) wallpaper.fetchNextWallpaper(trace.generateCallId())
   }
 )
 
