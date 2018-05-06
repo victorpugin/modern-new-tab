@@ -1,12 +1,13 @@
 import types from './mutation_types'
+import config from '../../../../config'
 import Storage from '../../../ext/storage'
 
 export default {
   loadWallpaperFromStorage ({ dispatch, commit }) {
-    const wallpaper = Storage.get('wallpaper.info')
+    const wallpaper = Storage.get(config.storage.wallpaper.info)
     if (wallpaper && wallpaper.url) {
       commit(types.WALLPAPER_SET, wallpaper)
-    } else { // TODO: handle when storage is empty
+    } else {
       dispatch('fetchNextWallpaper')
     }
   },
