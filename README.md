@@ -1,8 +1,21 @@
-# chrome New Tab
+# Modern New Tab
 
-> A personal extension overriding chrome’s new tab
+> A super cool chrome new tab extension
 
 ## Installation
+
+Install from the **[Chrome Web Store](https://chrome.google.com/webstore/detail/modern-new-tab/cfcfdcmfidkkggcbmmedebfjmdmjpckk)**.
+
+## Features
+
+* Random photo from **[Unsplash](https://unsplash.com/?utm_source=modern_new_tab&utm_medium=referral)** as wallpaper
+* New wallpaper before you get borred
+
+## Development
+
+Following the setup instructions, you can run the code by yourself.
+
+### Setup
 
 ```bash
 # install dependencies
