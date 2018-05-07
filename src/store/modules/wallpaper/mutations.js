@@ -4,9 +4,9 @@ export default {
   [types.WALLPAPER_SET] (state, wallpaper) {
     wallpaper = wallpaper || {}
 
-    state.url = wallpaper.url
-    state.date = wallpaper.date
-    state.location = wallpaper.location
-    state.user = wallpaper.user
+    if (wallpaper.url == null) return
+
+    state.info = wallpaper
+    state.info.user = state.info.user || {name: 'Unknown'}
   }
 }

@@ -27,8 +27,8 @@
       }
     }),
     computed: mapState({
-      wallpaperUrl: state => state.wallpaper.url,
-      wallpaperUser: state => state.wallpaper.user
+      wallpaperUrl: state => state.wallpaper.info.url,
+      wallpaperUser: state => state.wallpaper.info.user
     }),
     created () {
       this.loadingFullscreen = this.$loading({
