@@ -3,7 +3,7 @@ import config from '../../../../config'
 import Storage from '../../../ext/storage'
 
 export default {
-  loadWallpaperFromStorage ({ dispatch, commit }) {
+  loadWallpaperFromStorage ({ dispatch, commit }) { // DEPRECATED
     const wallpaper = Storage.get(config.storage.wallpaper.info)
     if (wallpaper && wallpaper.url) {
       commit(types.WALLPAPER_SET, wallpaper)

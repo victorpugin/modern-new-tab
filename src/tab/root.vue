@@ -9,7 +9,7 @@
 <script>
   import UnsplashCredits from '../components/unsplash-credits'
 
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
 
   export default {
     components: {
@@ -26,16 +26,23 @@
         }
       }
     }),
-    computed: mapState({
-      wallpaperUrl: state => state.wallpaper.info.url,
-      wallpaperUser: state => state.wallpaper.info.user
-    }),
+    computed: {
+      ...mapState({
+        wallpaperUrl: state => state.wallpaper.info.url,
+        wallpaperUser: state => state.wallpaper.info.user
+      }),
+      ...mapGetters('wallpaper', [
+        'wallpaperInfoExist'
+      ])
+    },
     created () {
       this.loadingFullscreen = this.$loading({
         lock: true,
         text: 'Loading...'
       })
-      this.loadWallpaperFromStorage()
+      if (!this.wallpaperInfoExist) {
+        this.fetchNextWallpaper()
+      }
     },
     mounted () { },
     methods: {

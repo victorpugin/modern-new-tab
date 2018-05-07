@@ -1,5 +1,6 @@
 import trace from '../utils/trace'
 import storage from '../ext/storage'
+import store from '../store'
 import config from '../../config'
 import axios from 'axios'
 import unsplashCredentials from '../../config/unsplash-credentials'
@@ -61,7 +62,7 @@ export default {
     wallpaper.location = wallpaper.location || {}
     wallpaper.user = wallpaper.user || {}
 
-    storage.set(config.storage.wallpaper.info, {
+    store.commit('wallpaper/WALLPAPER_SET', {
       url: wallpaper.urls.custom,
       date: wallpaper.created_at,
       location: {
