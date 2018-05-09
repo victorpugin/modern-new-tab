@@ -10,7 +10,8 @@ const vuexLocalStorageWallpaper = new VuexPersist({
   strictMode: true,
   key: 'wallpaper', // The key to store the state on in the storage provider.
   storage: window.localStorage,
-  reducer: (state) => ({wallpaper: state.wallpaper})
+  reducer: (state) => ({wallpaper: state.wallpaper}),
+  sharedMutations: ['wallpaper/WALLPAPER_SET']
 })
 
 const store = new Vuex.Store({
