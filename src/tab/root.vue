@@ -55,7 +55,6 @@
     mounted () { },
     methods: {
       ...mapActions('wallpaper', [
-        'loadWallpaperFromStorage',
         'fetchNextWallpaper'
       ]),
       /*
