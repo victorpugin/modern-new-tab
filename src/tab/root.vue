@@ -2,8 +2,8 @@
   #root
     #wallpaper
       transition(name="fade")
-        img(v-bind:src="wallpaperUrl" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
-    unsplash-credits(:user='wallpaperUser')
+        img(v-bind:src="wallpaper.info.url" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
+    unsplash-credits(:user='wallpaper.info.user')
 </template>
 
 <script>
@@ -18,7 +18,13 @@
     data: () => ({
       isLoadingFullscreen: true,
       wallpaper: {
-        isLoaded: false
+        isLoaded: false,
+        info: {
+          url: null,
+          date: null,
+          location: null,
+          user: null
+        }
       },
       ui: {
         credits: {
@@ -28,21 +34,23 @@
     }),
     computed: {
       ...mapState({
-        wallpaperUrl: state => state.wallpaper.info.url,
-        wallpaperUser: state => state.wallpaper.info.user
+        wallpaperInfo: state => state.wallpaper.info
       }),
       ...mapGetters('wallpaper', [
         'wallpaperInfoExist'
       ])
+    },
+    watch: {
+      wallpaperInfo (newValue, oldValue) {
+        this.initializeWallpaper()
+      }
     },
     created () {
       this.loadingFullscreen = this.$loading({
         lock: true,
         text: 'Loading...'
       })
-      if (!this.wallpaperInfoExist) {
-        this.fetchNextWallpaper()
-      }
+      this.initializeWallpaper()
     },
     mounted () { },
     methods: {
@@ -50,6 +58,18 @@
         'loadWallpaperFromStorage',
         'fetchNextWallpaper'
       ]),
+      /*
+       *  Copy of wallpaper info to avoid display any store update
+       *  Data will stay in store when VuexPersist.reducer
+       *  will work to restrict which state to persist under a module
+       */
+      initializeWallpaper () {
+        if (!this.wallpaperInfoExist) {
+          this.fetchNextWallpaper()
+        } else if (this.wallpaper.info.url == null) {
+          this.wallpaper.info = this.wallpaperInfo
+        }
+      },
       onWallpaperLoaded () {
         this.loadingFullscreen.close()
         this.wallpaper.isLoaded = true
