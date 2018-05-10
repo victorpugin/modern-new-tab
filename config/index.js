@@ -24,6 +24,9 @@ const config = {
       info: 'wallpaper.info',
       lastFetch: 'wallpaper.lastFetch'
     }
+  },
+  message: {
+    fetchNextWallpaper: 'fetchNextWallpaper'
   }
 }
 
