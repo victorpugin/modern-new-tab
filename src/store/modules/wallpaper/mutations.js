@@ -8,5 +8,14 @@ export default {
 
     state.info = wallpaper
     state.info.user = state.info.user || {name: 'Unknown'}
+  },
+
+  [types.IS_FETCHING_SET] (state, isFetching) {
+    if (state.isFetching !== isFetching) {
+      if (typeof (isFetching) === typeof (true)) {
+        state.isFetching = isFetching
+        state.fetchTime = new Date()
+      }
+    }
   }
 }

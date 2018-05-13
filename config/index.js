@@ -19,12 +19,6 @@ const config = {
       photoRandom: '/photos/random'
     }
   },
-  storage: {
-    wallpaper: {
-      info: 'wallpaper.info',
-      lastFetch: 'wallpaper.lastFetch'
-    }
-  },
   message: {
     fetchNextWallpaper: 'fetchNextWallpaper'
   }

@@ -6,12 +6,17 @@ import wallpaper from './modules/wallpaper'
 
 Vue.use(Vuex)
 
+const wallpaperSharedMutations = [
+  'wallpaper/WALLPAPER_SET',
+  'wallpaper/IS_FETCHING_SET'
+]
+
 const vuexLocalStorageWallpaper = new VuexPersist({
   strictMode: true,
   key: 'wallpaper', // The key to store the state on in the storage provider.
   storage: window.localStorage,
   reducer: (state) => ({wallpaper: state.wallpaper}),
-  sharedMutations: ['wallpaper/WALLPAPER_SET']
+  sharedMutations: wallpaperSharedMutations
 })
 
 const store = new Vuex.Store({

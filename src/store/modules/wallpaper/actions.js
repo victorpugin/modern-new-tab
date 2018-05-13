@@ -1,9 +1,21 @@
 import config from '../../../../config'
+import types from './mutation_types'
+import utils from './utils'
 
 export default {
 
   fetchNextWallpaper ({ commit, state }) {
-    chrome.runtime.sendMessage({ msg: config.message.fetchNextWallpaper })
+    if (utils.isTimeToFetch(state.isFetching, state.fetchTime)) {
+      commit(types.IS_FETCHING_SET, true)
+      chrome.runtime.sendMessage({
+        msg: config.message.fetchNextWallpaper
+      })
+    }
+  },
+
+  saveWallpaper ({ commit, state }, wallpaper) {
+    commit(types.WALLPAPER_SET, wallpaper)
+    commit(types.IS_FETCHING_SET, false)
   }
 
 }

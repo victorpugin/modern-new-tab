@@ -10,7 +10,9 @@ export default {
       date: null,
       location: null,
       user: null
-    }
+    },
+    isFetching: false,
+    fetchTime: null
   },
   actions,
   mutations,
