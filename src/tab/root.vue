@@ -3,17 +3,20 @@
     #wallpaper
       transition(name="fade")
         img(v-bind:src="wallpaper.info.url" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
+    bookmarks-bar
     unsplash-credits(:user='wallpaper.info.user')
 </template>
 
 <script>
   import UnsplashCredits from '../components/unsplash-credits'
+  import BookmarksBar from '../components/bookmarks-bar'
 
   import { mapState, mapGetters, mapActions } from 'vuex'
 
   export default {
     components: {
-      UnsplashCredits
+      UnsplashCredits,
+      BookmarksBar
     },
     data: () => ({
       isLoadingFullscreen: true,

@@ -23,6 +23,7 @@ module.exports = {
     'unlimitedStorage',
 */
     'storage',
+    'bookmarks',
     'https://api.unsplash.com/*'
   ],
   browser_action: {
