@@ -1,7 +1,7 @@
 <template lang="pug">
   .navbar
     .container
-      el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" active-text-color="#1b6f84" hover-text-color="black")
+      el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
         el-menu-item(
           :index="item.id"
           class="navbar__item"
@@ -56,8 +56,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.navbar {
+}
 .navbar__menu {
-	background-color: black;
 	border-bottom: none;
 }
 .navbar__menu--opacity {
@@ -71,7 +72,7 @@ export default {
 	line-height: 30px;
 	padding-left: 8px;
 	padding-right: 8px;
-	color: white;
+  color: black;
 }
 
 </style>
