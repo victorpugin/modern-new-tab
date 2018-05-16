@@ -60,7 +60,9 @@ export default {
   height: 30px;
 }
 .navbar--overflow {
-  overflow:auto;
+  position: relative;
+  width: 100%;
+  overflow: auto;
 }
 .navbar__menu {
 	border-bottom: none;
