@@ -1,5 +1,5 @@
 <template lang="pug">
-  .navbar
+  .navbar(class="navbar--overflow")
     .container
       el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
         el-menu-item(
@@ -57,6 +57,10 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  height: 30px;
+}
+.navbar--overflow {
+  overflow:auto;
 }
 .navbar__menu {
 	border-bottom: none;
