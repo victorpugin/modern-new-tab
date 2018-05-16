@@ -2,11 +2,12 @@
   .navbar(class="navbar--overflow")
     .container
       el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
-        el-menu-item(
-          :index="item.id"
-          class="navbar__item"
-          v-for="item in bookmarks"
-          :key="item.id") {{ cut_title(item.title) }}
+        template(v-if="true")
+          el-menu-item(
+            :index="item.id"
+            class="navbar__item"
+            v-for="item in bookmarks"
+            :key="item.id") {{ cut_title(item.title) }}
 </template>
 
 <script>
@@ -17,23 +18,38 @@ export default {
   computed: { },
   data () {
     return {
-      bookmarks: null
+      bookmarks: null,
+      bookmarksById: {}
     }
   },
   created () {
-    chrome.bookmarks.getTree(this.process_bookmarks)
+    chrome.bookmarks.getTree(this.find_bookmark_bar)
   },
   methods: {
-    process_bookmarks (bookmarks) {
+    find_bookmark_bar (bookmarks) {
       for (var i = 0; i < bookmarks.length; i++) {
         var bookmark = bookmarks[i]
 
         if (bookmark.children) {
           if (bookmark.title === 'Barre de favoris') {
             this.bookmarks = bookmark.children
+            this.process_bookmarks(this.bookmarks)
+            return
           } else {
-            this.process_bookmarks(bookmark.children)
+            this.find_bookmark_bar(bookmark.children)
           }
+        }
+      }
+    },
+    process_bookmarks (bookmarks) {
+      const length = bookmarks.length
+      for (var i = 0; i < length; i++) {
+        const bookmark = bookmarks[i]
+
+        this.bookmarksById[bookmark.id] = bookmark
+
+        if (bookmark.children) {
+          this.process_bookmarks(bookmark.children)
         }
       }
     },
@@ -41,9 +57,9 @@ export default {
       return title.substring(0, 18)
     },
     menuSelected (key, keyPath) {
-      const res = this.bookmarks.filter(bookmark => bookmark.id === key)
-      if (res != null && res.length > 0) {
-        const bookmark = res[0]
+      if (this.bookmarksById.hasOwnProperty(key)) {
+        const bookmark = this.bookmarksById[key]
+
         if (bookmark.url) {
           chrome.tabs.update(null, {
             url: bookmark.url
