@@ -45,7 +45,9 @@ export default {
       if (res != null && res.length > 0) {
         const bookmark = res[0]
         if (bookmark.url) {
-          window.open(bookmark.url, '_self')
+          chrome.tabs.update(null, {
+            url: bookmark.url
+          })
         }
       }
     }
