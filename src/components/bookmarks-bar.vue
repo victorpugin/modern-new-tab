@@ -2,12 +2,16 @@
   .navbar(class="navbar--overflow")
     .container
       el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
-        template(v-if="true")
-          el-menu-item(
-            :index="item.id"
-            class="navbar__item"
-            v-for="item in bookmarks"
-            :key="item.id") {{ cut_title(item.title) }}
+        .navbar__container(v-for="item in bookmarks")
+          template(v-if="isBookmarkFolder(item.id)")
+            el-submenu(:index="item.id" class="navbar__item")
+              template(slot="title" class="navbar__item") {{ cut_title(item.title) }}
+              el-menu-item(class="navbar__item") Sub item
+          template(v-else)
+            el-menu-item(
+              :index="item.id"
+              class="navbar__item"
+              :key="item.id") {{ cut_title(item.title) }}
 </template>
 
 <script>
@@ -66,6 +70,16 @@ export default {
           })
         }
       }
+    },
+    isBookmarkFolder (bookmarkId) {
+      if (this.bookmarksById.hasOwnProperty(bookmarkId)) {
+        const bookmark = this.bookmarksById[bookmarkId]
+
+        if (bookmark.children) {
+          return true
+        }
+      }
+      return false
     }
   }
 }
@@ -88,6 +102,9 @@ export default {
 }
 .navbar__menu--opacity:hover {
 	opacity: 1;
+}
+.navbar__container {
+  display: inline-flex;
 }
 .navbar__item {
 	height: 30px;
