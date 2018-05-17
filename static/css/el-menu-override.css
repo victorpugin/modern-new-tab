@@ -5,3 +5,6 @@
   padding-right: 8px;
   color: black;
 }
+.el-submenu__icon-arrow {
+  visibility: hidden;
+}
