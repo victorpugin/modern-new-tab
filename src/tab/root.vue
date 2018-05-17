@@ -28,11 +28,6 @@
           location: null,
           user: null
         }
-      },
-      ui: {
-        credits: {
-          show: false
-        }
       }
     }),
     computed: {
