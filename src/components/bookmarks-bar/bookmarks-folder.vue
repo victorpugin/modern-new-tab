@@ -3,9 +3,7 @@
     .navbar__container(v-for="item in bookmarks" :style="styleNavbarContainer")
       template(v-if="isBookmarkFolder(item.id)")
         el-submenu(:index="item.id")
-          template(slot="title" class="navbar__item")
-            img(src="favicon(item.id)" class="navbar__favicon")
-            span {{ cut_title(item.title) }}
+          template(slot="title" class="navbar__item") {{ cut_title(item.title) }}
           bookmarks-folder(:bookmarks="item.children" :bookmarksById="bookmarksById" display="block")
       template(v-else)
         el-menu-item(:index="item.id" class="navbar__item" :key="item.id")
@@ -54,13 +52,19 @@ export default {
       return false
     },
     favicon (bookmarkId) {
+      let res = 'chrome://favicon/'
+
       if (this.bookmarksById.hasOwnProperty(bookmarkId)) {
         const bookmark = this.bookmarksById[bookmarkId]
 
         if (bookmark.url) {
-          return 'chrome://favicon/' + bookmark.url
+          res += bookmark.url
+        } else if (bookmark.children) {
+          console.log('folder favicon missing')
         }
       }
+
+      return res
     }
   }
 }
