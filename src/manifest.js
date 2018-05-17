@@ -24,6 +24,7 @@ module.exports = {
 */
     'storage',
     'bookmarks',
+    'chrome://favicon/',
     'https://api.unsplash.com/*'
   ],
   browser_action: {

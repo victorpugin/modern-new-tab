@@ -5,6 +5,12 @@
   padding-right: 8px;
   color: black;
 }
+.el-submenu__title * {
+  vertical-align: baseline;
+}
+.el-menu-item * {
+  vertical-align: baseline;
+}
 .el-submenu__icon-arrow {
   visibility: hidden;
 }
