@@ -2,22 +2,19 @@
   .navbar(class="navbar--overflow")
     .container
       el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
-        .navbar__container(v-for="item in bookmarks")
-          template(v-if="isBookmarkFolder(item.id)")
-            el-submenu(:index="item.id" class="navbar__item")
-              template(slot="title" class="navbar__item") {{ cut_title(item.title) }}
-              el-menu-item(class="navbar__item") Sub item
-          template(v-else)
-            el-menu-item(
-              :index="item.id"
-              class="navbar__item"
-              :key="item.id") {{ cut_title(item.title) }}
+        bookmarks-folder(:bookmarks="bookmarks" :bookmarksById="bookmarksById" display="inline-flex")
+
 </template>
 
 <script>
 
+import bookmarksFolder from './bookmarks-bar/bookmarks-folder'
+
 export default {
   name: 'bookmarks-bar',
+  components: {
+    bookmarksFolder
+  },
   props: [],
   computed: { },
   data () {
@@ -102,16 +99,6 @@ export default {
 }
 .navbar__menu--opacity:hover {
 	opacity: 1;
-}
-.navbar__container {
-  display: inline-flex;
-}
-.navbar__item {
-	height: 30px;
-	line-height: 30px;
-	padding-left: 8px;
-	padding-right: 8px;
-  color: black;
 }
 
 </style>
