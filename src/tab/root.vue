@@ -4,7 +4,7 @@
       transition(name="fade")
         img(v-bind:src="wallpaper.info.url" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
     bookmarks-bar(v-show="displayBookmarksBar")
-    unsplash-credits(:user='wallpaper.info.user')
+    unsplash-credits(:user='wallpaper.info.user' v-show='wallpaper.isLoaded')
 </template>
 
 <script>
@@ -50,10 +50,6 @@
       }
     },
     created () {
-      this.loadingFullscreen = this.$loading({
-        lock: true,
-        text: 'Loading...'
-      })
       this.initializeWallpaper()
     },
     mounted () { },
@@ -68,13 +64,19 @@
        */
       initializeWallpaper () {
         if (!this.wallpaperInfoExist) {
+          this.loadingFullscreen = this.$loading({
+            lock: true,
+            text: 'Loading...'
+          })
           this.fetchNextWallpaper()
         } else if (this.wallpaper.info.url == null) {
           this.wallpaper.info = this.wallpaperInfo
         }
       },
       onWallpaperLoaded () {
-        this.loadingFullscreen.close()
+        if (this.loadingFullscreen) {
+          this.loadingFullscreen.close()
+        }
         this.wallpaper.isLoaded = true
         this.fetchNextWallpaper()
       }
