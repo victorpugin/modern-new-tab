@@ -3,7 +3,7 @@
     #wallpaper
       transition(name="fade")
         img(v-bind:src="wallpaper.info.url" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
-    bookmarks-bar
+    bookmarks-bar(v-show="displayBookmarksBar")
     unsplash-credits(:user='wallpaper.info.user')
 </template>
 
@@ -37,7 +37,8 @@
     }),
     computed: {
       ...mapState({
-        wallpaperInfo: state => state.wallpaper.info
+        wallpaperInfo: state => state.wallpaper.info,
+        displayBookmarksBar: state => state.preferences.feature.bookmarksBar
       }),
       ...mapGetters('wallpaper', [
         'wallpaperInfoExist'
