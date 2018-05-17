@@ -1,0 +1,4 @@
+
+export default {
+  FEATURE_BOOKMAR_BAR_SET: 'FEATURE_BOOKMAR_BAR_SET'
+}
