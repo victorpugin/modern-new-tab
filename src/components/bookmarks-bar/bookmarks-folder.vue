@@ -1,8 +1,8 @@
 <template lang="pug">
-  .folder
+  .navbar__folder
     .navbar__container(v-for="item in bookmarks" :style="styleNavbarContainer")
       template(v-if="isBookmarkFolder(item.id)")
-        el-submenu(:index="item.id" class="navbar__item")
+        el-submenu(:index="item.id")
           template(slot="title" class="navbar__item") {{ cut_title(item.title) }}
           bookmarks-folder(:bookmarks="item.children" :bookmarksById="bookmarksById" display="block")
       template(v-else)
@@ -57,6 +57,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.navbar__folder {
+}
 .navbar__container {
 }
 .navbar__item {
