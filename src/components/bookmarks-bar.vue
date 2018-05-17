@@ -1,8 +1,18 @@
 <template lang="pug">
   .navbar(class="navbar--overflow")
     .container
-      el-menu(mode="horizontal" class="navbar__menu navbar__menu--opacity" @select="menuSelected" background-color="#f2f2f2" active-text-color="#1b6f84")
-        bookmarks-folder(:bookmarks="bookmarks" :bookmarksById="bookmarksById" display="inline-flex")
+      el-menu(
+        mode="horizontal"
+        class="navbar__menu navbar__menu--opacity"
+        @select="menuSelected"
+        background-color="#f2f2f2"
+        active-text-color="#1b6f84"
+        )
+        bookmarks-folder(
+          :bookmarks="bookmarks"
+          :bookmarksById="bookmarksById"
+          display="inline-flex"
+          )
 
 </template>
 
