@@ -10,6 +10,7 @@ Install from the **[Chrome Web Store](https://chrome.google.com/webstore/detail/
 
 * Random photo from **[Unsplash](https://unsplash.com/?utm_source=modern_new_tab&utm_medium=referral)** as wallpaper
 * New wallpaper before you get borred
+* Bookmarks bar
 
 ## Development
 
