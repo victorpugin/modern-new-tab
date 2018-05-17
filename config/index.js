@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'development') {
 const config = {
   wallpaper: {
     updateFrequency: updateWallpaperFrequency, // fetch frequency of photos
+    fetchTimeout: 1000 * 15,
     width: 1920,
     height: 1080
   },

@@ -6,7 +6,9 @@ export default {
   },
 
   isTimeToFetch (isFetching, time) {
-    if (isFetching === true) return false
+    if (isFetching === true) {
+      return this.diffDate(time) > config.wallpaper.fetchTimeout
+    }
 
     return this.diffDate(time) > config.wallpaper.updateFrequency
   }
