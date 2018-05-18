@@ -7,5 +7,8 @@ export default {
         state.feature.bookmarksBar = enabled
       }
     }
+  },
+  [types.WALLPAPER_TRANSITION_SHOW_DURATION_SET] (state, duration) {
+    state.wallpaper.transitionShowDuration = duration
   }
 }

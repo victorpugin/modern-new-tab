@@ -10,7 +10,8 @@ Vue.use(Vuex)
 const sharedMutations = [
   'wallpaper/WALLPAPER_SET',
   'wallpaper/IS_FETCHING_SET',
-  'preferences/FEATURE_BOOKMAR_BAR_SET'
+  'preferences/FEATURE_BOOKMAR_BAR_SET',
+  'preferences/WALLPAPER_TRANSITION_SHOW_DURATION_SET'
 ]
 
 const vuexLocalStorage = new VuexPersist({

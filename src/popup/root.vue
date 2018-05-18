@@ -8,22 +8,38 @@
         active-color="#1b6f84"
         active-text="bookmarks bar"
         )
+      h2 Customize
+      el-slider(
+        v-model="sliderWallpaperShowDuration"
+        :max="wallpaperShowMaxDuration"
+        class="block__slider"
+        )
       p Thank you,&nbsp;
         a(:href="githubLink" v-on:click="personalGithub")
           b Victor Pugin
 </template>
+
 <script>
   export default {
     data: () => ({
-      githubLink: 'https://github.com/victorpugin'
+      githubLink: 'https://github.com/victorpugin',
+      wallpaperShowMaxDuration: 5000
     }),
     computed: {
       switchBookmarksBar: {
-        get () {
+        get () { // format-tooltip="formatDuration"
           return this.$store.state.preferences.feature.bookmarksBar
         },
         set (newValue) {
           this.$store.commit('preferences/FEATURE_BOOKMAR_BAR_SET', newValue)
+        }
+      },
+      sliderWallpaperShowDuration: {
+        get () {
+          return this.$store.state.preferences.wallpaper.transitionShowDuration
+        },
+        set (newValue) {
+          this.$store.commit('preferences/WALLPAPER_TRANSITION_SHOW_DURATION_SET', newValue)
         }
       }
     },
@@ -32,10 +48,15 @@
     methods: {
       personalGithub () {
         chrome.tabs.create({ url: this.githubLink })
+      },
+      formatDuration (value) {
+        console.log(value)
+        return value
       }
     }
   }
 </script>
+
 <style lang="scss">
 body {
   min-width: 250px;
@@ -48,5 +69,9 @@ a:active {
 }
 .el-switch__label.is-active {
   color: #303133;
+}
+.block__slider {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 </style>

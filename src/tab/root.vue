@@ -89,7 +89,7 @@
           el,
           { opacity: 1 },
           {
-            duration: this.transitionShowDuration,
+            duration: this.wallpaperShowDuration,
             complete: () => {
               done()
             }
