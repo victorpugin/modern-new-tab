@@ -1,22 +1,25 @@
 <template lang="pug">
-    div
+    .root
       h1 Modern New Tab
       p Enjoy a view of the world each time you're opening a new tab !
-      h2 Enable features
-      el-switch(
-        v-model="switchBookmarksBar"
-        active-color="#1b6f84"
-        active-text="bookmarks bar"
-        )
-      h2 Customize
-      div
-        span wallpaper show duration
-        el-slider(
-          v-model="sliderWallpaperShowDuration"
-          :max="wallpaperShowMaxDuration"
-          :format-tooltip="formatDuration"
-          class="block__slider"
-          )
+      .settings
+        h2 Enable features
+        .settings__list
+          .settings__item
+            el-switch(
+              v-model="switchBookmarksBar"
+              active-color="#1b6f84"
+              active-text="bookmarks bar"
+              )
+        h2 Customize
+        .settings__list
+          .settings__item
+            span(class="settings__description") wallpaper show duration
+            el-slider(
+              v-model="sliderWallpaperShowDuration"
+              :max="wallpaperShowMaxDuration"
+              :format-tooltip="formatDuration"
+              )
       p Thank you,&nbsp;
         a(:href="githubLink" v-on:click="personalGithub")
           b Victor Pugin
@@ -70,8 +73,12 @@ h1, h2, b {
 a:active {
   text-decoration-color: #1b6f84;
 }
-.block__slider {
+.settings__list {
   margin-left: 5px;
   margin-right: 5px;
+}
+.settings__description {
+  font-size: 14px;
+  font-weight: 500;
 }
 </style>
