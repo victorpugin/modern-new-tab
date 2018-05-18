@@ -1,7 +1,11 @@
 <template lang="pug">
   #root
     #wallpaper
-      transition(name="fade")
+      transition(
+        v-bind:css="false"
+        v-on:before-enter="transitionBeforeEnter"
+        v-on:enter="transitionEnter"
+        )
         img(v-bind:src="wallpaper.info.url" @load="onWallpaperLoaded" v-show='wallpaper.isLoaded')
     bookmarks-bar(v-show="displayBookmarksBar")
     unsplash-credits(:user='wallpaper.info.user' v-show='wallpaper.isLoaded')
@@ -12,6 +16,7 @@
   import BookmarksBar from '@Components/bookmarks-bar'
 
   import { mapState, mapGetters, mapActions } from 'vuex'
+  import Velocity from 'velocity-animate'
 
   export default {
     components: {
@@ -74,6 +79,22 @@
         }
         this.wallpaper.isLoaded = true
         this.fetchNextWallpaper()
+      },
+      transitionBeforeEnter (el) {
+        el.style.opacity = 0
+      },
+      transitionEnter (el, done) {
+        Velocity(
+          el,
+          { opacity: 1 },
+          {
+            duration: 2000,
+            complete: () => {
+              done()
+            }
+          }
+        )
+        done()
       }
     }
   }
@@ -96,11 +117,5 @@
     margin: auto;
     min-width: 50%;
     min-height: 50%;
-  }
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 2s ease-out
-  }
-  .fade-enter, .fade-leave-to {
-    opacity: 0
   }
 </style>
