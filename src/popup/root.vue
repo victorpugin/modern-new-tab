@@ -67,11 +67,9 @@ h1, h2, b {
 a:active {
   text-decoration-color: #1b6f84;
 }
-.el-switch__label.is-active {
-  color: #303133;
-}
 .block__slider {
   margin-left: 5px;
   margin-right: 5px;
+  color: #1b6f84;
 }
 </style>
