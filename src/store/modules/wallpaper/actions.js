@@ -1,4 +1,4 @@
-import config from '../../../../config'
+import config from '@Config'
 import types from './mutation_types'
 import utils from './utils'
 

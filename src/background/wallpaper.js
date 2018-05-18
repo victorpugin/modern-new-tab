@@ -1,8 +1,8 @@
-import trace from '../utils/trace'
-import store from '../store'
-import config from '../../config'
+import trace from '@SrcUtils/trace'
+import store from '@Store'
+import config from '@Config'
+import unsplashCredentials from '@Config/unsplash-credentials'
 import axios from 'axios'
-import unsplashCredentials from '../../config/unsplash-credentials'
 
 export default {
   // 1. Fetch wallpaper from Unsplash

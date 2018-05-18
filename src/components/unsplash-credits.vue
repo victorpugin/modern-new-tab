@@ -10,7 +10,7 @@
 
 <script>
 
-import config from '../../config'
+import config from '@Config'
 
 export default {
   name: 'unsplash-credits',

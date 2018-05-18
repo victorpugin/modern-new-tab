@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import UnsplashCredits from '../components/unsplash-credits'
-  import BookmarksBar from '../components/bookmarks-bar'
+  import UnsplashCredits from '@Components/unsplash-credits'
+  import BookmarksBar from '@Components/bookmarks-bar'
 
   import { mapState, mapGetters, mapActions } from 'vuex'
 

@@ -1,5 +1,5 @@
-import trace from '../utils/trace'
-import config from '../../config'
+import trace from '@SrcUtils/trace'
+import config from '@Config'
 
 import wallpaper from './wallpaper'
 

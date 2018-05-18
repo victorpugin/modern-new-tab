@@ -28,7 +28,11 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@Config': path.join(rootDir, 'config'),
+      '@Static': path.join(rootDir, 'static'),
+      '@SrcUtils': resolve('utils'),
+      '@Components': resolve('components'),
+      '@Store': resolve('store')
     }
   },
   module: {
@@ -88,7 +92,7 @@ module.exports = {
   plugins: [
 		new CleanWebpackPlugin(['*'], { root: path.join(rootDir, 'dist') }),
     // Customize your extension structure.
-    htmlPage('home', 'app', ['manifest', 'vendor', 'tab']),
+    htmlPage('New Tab', 'app', ['manifest', 'vendor', 'tab']),
     htmlPage('popup', 'popup', ['manifest', 'vendor', 'popup']),
     htmlPage('options', 'options', ['manifest', 'vendor', 'options']),
     htmlPage('background', 'background', ['manifest', 'vendor', 'background']),

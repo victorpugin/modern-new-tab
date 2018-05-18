@@ -3,8 +3,8 @@ import store from '../store'
 import root from './root.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '../../static/css/style.css'
-import '../../static/css/el-menu-override.css'
+import '@Static/css/style.css'
+import '@Static/css/el-menu-override.css'
 
 Vue.config.productionTip = false
 
