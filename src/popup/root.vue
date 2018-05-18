@@ -9,11 +9,14 @@
         active-text="bookmarks bar"
         )
       h2 Customize
-      el-slider(
-        v-model="sliderWallpaperShowDuration"
-        :max="wallpaperShowMaxDuration"
-        class="block__slider"
-        )
+      div
+        span wallpaper show duration
+        el-slider(
+          v-model="sliderWallpaperShowDuration"
+          :max="wallpaperShowMaxDuration"
+          :format-tooltip="formatDuration"
+          class="block__slider"
+          )
       p Thank you,&nbsp;
         a(:href="githubLink" v-on:click="personalGithub")
           b Victor Pugin
@@ -27,7 +30,7 @@
     }),
     computed: {
       switchBookmarksBar: {
-        get () { // format-tooltip="formatDuration"
+        get () {
           return this.$store.state.preferences.feature.bookmarksBar
         },
         set (newValue) {
@@ -50,8 +53,8 @@
         chrome.tabs.create({ url: this.githubLink })
       },
       formatDuration (value) {
-        console.log(value)
-        return value
+        const res = value / 1000
+        return res.toFixed(2) + 's'
       }
     }
   }
@@ -70,6 +73,5 @@ a:active {
 .block__slider {
   margin-left: 5px;
   margin-right: 5px;
-  color: #1b6f84;
 }
 </style>
