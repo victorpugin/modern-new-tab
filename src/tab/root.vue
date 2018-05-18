@@ -38,7 +38,8 @@
     computed: {
       ...mapState({
         wallpaperInfo: state => state.wallpaper.info,
-        displayBookmarksBar: state => state.preferences.feature.bookmarksBar
+        displayBookmarksBar: state => state.preferences.feature.bookmarksBar,
+        wallpaperShowDuration: state => state.preferences.wallpaper.transitionShowDuration
       }),
       ...mapGetters('wallpaper', [
         'wallpaperInfoExist'
@@ -88,7 +89,7 @@
           el,
           { opacity: 1 },
           {
-            duration: 2000,
+            duration: this.transitionShowDuration,
             complete: () => {
               done()
             }

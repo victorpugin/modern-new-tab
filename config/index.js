@@ -10,7 +10,8 @@ const config = {
     updateFrequency: updateWallpaperFrequency, // fetch frequency of photos
     fetchTimeout: 1000 * 15,
     width: 1920,
-    height: 1080
+    height: 1080,
+    transitionShowDuration: 2000
   },
   unsplash: {
     url: 'https://unsplash.com/',
