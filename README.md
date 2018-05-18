@@ -9,8 +9,9 @@ Install from the **[Chrome Web Store](https://chrome.google.com/webstore/detail/
 ## Features
 
 * Random photo from **[Unsplash](https://unsplash.com/?utm_source=modern_new_tab&utm_medium=referral)** as wallpaper
-* New wallpaper before you get borred
+* New wallpaper before you get bored
 * Bookmarks bar
+* Customize wallpaper transition duration
 
 ## Development
 

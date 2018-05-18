@@ -14,7 +14,7 @@
         h2 Customize
         .settings__list
           .settings__item
-            span(class="settings__description") wallpaper show duration
+            span(class="settings__description") wallpaper transition duration
             el-slider(
               v-model="sliderWallpaperShowDuration"
               :max="wallpaperShowMaxDuration"

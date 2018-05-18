@@ -11,7 +11,7 @@ const config = {
     fetchTimeout: 1000 * 15,
     width: 1920,
     height: 1080,
-    transitionShowDuration: 2000
+    transitionShowDuration: 500
   },
   unsplash: {
     url: 'https://unsplash.com/',
