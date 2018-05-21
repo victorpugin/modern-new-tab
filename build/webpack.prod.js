@@ -12,7 +12,7 @@ module.exports = merge(baseWebpack, {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
     new OptimizeCSSPlugin({ cssProcessorOptions: { safe: true } }),
-    new ExtractTextPlugin({ filename: 'css/[name].[contenthash].css' }),
+    new ExtractTextPlugin({ filename: 'css/[name].[hash].css' }),
     new webpack.HashedModuleIdsPlugin(),
     new ZipPlugin({
       path: '..',
