@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const { extract } = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 exports.htmlPage = (title, filename, chunks, template) => new HtmlWebpackPlugin({
@@ -36,7 +36,7 @@ exports.cssLoaders = (options = {}) => {
       })
     }
     if (options.extract) {
-      loaders[key] = extract({ use: loader, fallback: 'vue-style-loader' })
+      loaders[key] = [MiniCssExtractPlugin.loader].concat(loader)
     } else {
       loaders[key] = ['vue-style-loader'].concat(loader)
     }
