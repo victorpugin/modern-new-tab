@@ -5,6 +5,7 @@ const baseWebpack = require('./webpack.base')
 const { styleLoaders } = require('./tools')
 
 module.exports = merge(baseWebpack, {
+  mode: 'development',
   watch: true,
   module: { rules: styleLoaders({ sourceMap: false }) },
   devtool: '#cheap-module-source-map',

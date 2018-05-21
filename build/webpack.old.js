@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ChromeReloadPlugin = require('wcer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 const { cssLoaders, htmlPage } = require('./tools')
 
 const rootDir = path.resolve(__dirname, '..')
@@ -101,7 +102,24 @@ module.exports = {
     new ChromeReloadPlugin({
       port: 9090,
       manifest: path.join(rootDir, 'src', 'manifest.js')
-    })
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      chunks: ['vendor']
+    }),
+    new ManifestPlugin({})
   ],
   performance: { hints: false }
 }
