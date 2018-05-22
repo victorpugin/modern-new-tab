@@ -5,7 +5,7 @@ module.exports = {
   name: 'Modern New Tab',
   description: 'A modern and clean new tab extension',
   author: 'victor pugin <victor.pugin@epitech.eu>',
-  version: '0.3.2',
+  version: '0.3.3',
   icons: {
     '128': 'icons/icon_128.png'
   },

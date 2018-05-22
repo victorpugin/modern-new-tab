@@ -12,6 +12,7 @@ Install from the **[Chrome Web Store](https://chrome.google.com/webstore/detail/
 * New wallpaper before you get bored
 * Bookmarks bar
 * Customize wallpaper transition duration
+* Customize new wallpaper frequency
 
 ## Development
 
