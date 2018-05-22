@@ -2,7 +2,7 @@
 var updateWallpaperFrequency = 1000 * 30
 
 if (process.env.NODE_ENV === 'development') {
-  updateWallpaperFrequency = 1000 * 20
+  updateWallpaperFrequency = 1000 * 10
 }
 
 const config = {

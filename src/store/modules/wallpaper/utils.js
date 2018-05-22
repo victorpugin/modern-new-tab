@@ -5,11 +5,11 @@ export default {
     return new Date() - new Date(time)
   },
 
-  isTimeToFetch (isFetching, time) {
+  isTimeToFetch (updateFrequency, isFetching, time) {
     if (isFetching === true) {
       return this.diffDate(time) > config.wallpaper.fetchTimeout
     }
 
-    return this.diffDate(time) > config.wallpaper.updateFrequency
+    return this.diffDate(time) > updateFrequency
   }
 }

@@ -4,8 +4,9 @@ import utils from './utils'
 
 export default {
 
-  fetchNextWallpaper ({ commit, state }) {
-    if (utils.isTimeToFetch(state.isFetching, state.fetchTime)) {
+  fetchNextWallpaper ({ commit, state, rootState }) {
+    const updateFrequency = rootState.preferences.wallpaper.updateFrequency
+    if (utils.isTimeToFetch(updateFrequency, state.isFetching, state.fetchTime)) {
       commit(types.IS_FETCHING_SET, true)
       chrome.runtime.sendMessage({
         msg: config.message.fetchNextWallpaper

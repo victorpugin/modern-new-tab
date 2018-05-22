@@ -20,6 +20,14 @@
               :max="wallpaperShowMaxDuration"
               :format-tooltip="formatDuration"
               )
+          .settings__item
+            span(class="settings__description") wallpaper update frequency
+            el-slider(
+              v-model="sliderWallpaperUpdateFrequency"
+              :min="wallpaperUpdateMinFrequency"
+              :max="wallpaperUpdateMaxFrequency"
+              :format-tooltip="formatDuration"
+              )
       p Thank you,&nbsp;
         a(:href="githubLink" v-on:click="personalGithub")
           b Victor Pugin
@@ -29,7 +37,9 @@
   export default {
     data: () => ({
       githubLink: 'https://github.com/victorpugin',
-      wallpaperShowMaxDuration: 5000
+      wallpaperShowMaxDuration: 5000,
+      wallpaperUpdateMinFrequency: 1000 * 10,
+      wallpaperUpdateMaxFrequency: 1000 * 30
     }),
     computed: {
       switchBookmarksBar: {
@@ -46,6 +56,14 @@
         },
         set (newValue) {
           this.$store.commit('preferences/WALLPAPER_TRANSITION_SHOW_DURATION_SET', newValue)
+        }
+      },
+      sliderWallpaperUpdateFrequency: {
+        get () {
+          return this.$store.state.preferences.wallpaper.updateFrequency
+        },
+        set (newValue) {
+          this.$store.commit('preferences/WALLPAPER_UPDATE_FREQUENCY_SET', newValue)
         }
       }
     },

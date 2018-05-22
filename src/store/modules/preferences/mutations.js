@@ -10,5 +10,8 @@ export default {
   },
   [types.WALLPAPER_TRANSITION_SHOW_DURATION_SET] (state, duration) {
     state.wallpaper.transitionShowDuration = duration
+  },
+  [types.WALLPAPER_UPDATE_FREQUENCY_SET] (state, duration) {
+    state.wallpaper.updateFrequency = duration
   }
 }

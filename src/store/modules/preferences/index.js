@@ -8,7 +8,8 @@ export default {
       bookmarksBar: false
     },
     wallpaper: {
-      transitionShowDuration: config.wallpaper.transitionShowDuration
+      transitionShowDuration: config.wallpaper.transitionShowDuration,
+      updateFrequency: config.wallpaper.updateFrequency
     }
   },
   mutations
