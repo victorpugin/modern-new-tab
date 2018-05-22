@@ -34,12 +34,14 @@
 </template>
 
 <script>
+  import config from '@Config'
+
   export default {
     data: () => ({
       githubLink: 'https://github.com/victorpugin',
-      wallpaperShowMaxDuration: 5000,
-      wallpaperUpdateMinFrequency: 1000 * 10,
-      wallpaperUpdateMaxFrequency: 1000 * 30
+      wallpaperShowMaxDuration: config.wallpaper.transitionShowMaxDuration,
+      wallpaperUpdateMinFrequency: config.wallpaper.updateMinFrequency,
+      wallpaperUpdateMaxFrequency: config.wallpaper.updateMaxFrequency
     }),
     computed: {
       switchBookmarksBar: {
